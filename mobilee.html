@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Design Showcase</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100%;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Main Content */
+        main {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .content-section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-color: #667eea;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .gallery-item {
+            aspect-ratio: 16/9;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item svg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-item-1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .gallery-item-2 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .gallery-item-3 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .gallery-item-4 {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .gallery-item-5 {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .gallery-item-6 {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .gallery-item-7 {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        }
+
+        .gallery-item-8 {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .content-section {
+                padding: 2rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 2rem 0;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            .feature-icon {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Large screens */
+        @media (min-width: 1200px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .gallery {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">ResponsiveWeb</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Beautiful Responsive Design</h1>
+            <p>Experience seamless adaptation across all devices - from mobile to desktop</p>
+            <a href="#features" class="cta-button">Explore Features</a>
+        </div>
+    </section>
+
+    <main class="container">
+        <section class="content-section" id="features">
+            <h2 class="section-title">Responsive Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile First</h3>
+                    <p>Designed with mobile devices in mind, ensuring perfect functionality on smartphones and tablets.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <h3>Desktop Ready</h3>
+                    <p>Scales beautifully to larger screens with optimized layouts for desktop and laptop computers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Flexible Grid</h3>
+                    <p>Uses CSS Grid and Flexbox for dynamic layouts that adapt to any screen size automatically.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Loading</h3>
+                    <p>Optimized for performance with efficient CSS and minimal resource usage across all devices.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Easy Navigation</h3>
+                    <p>Intuitive navigation that transforms into a mobile-friendly menu on smaller screens.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3>Modern Design</h3>
+                    <p>Contemporary styling with smooth animations and hover effects that work across all platforms.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" id="gallery">
+            <h2 class="section-title">Responsive Gallery</h2>
+            <div class="gallery">
+                <div class="gallery-item gallery-item-1">
+                    <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="225" fill="url(#grad1)"/>
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Laptop -->
+                        <rect x="80" y="60" width="140" height="90" rx="8" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                        <rect x="85" y="65" width="130" height="75" rx="3" fill="#ecf0f1"/>
+                        <rect x="90" y="70" width="120" height="65" fill="#3498db"/>
+                        <rect x="95" y="75" width="110" height="8" fill="rgba(255,255,255,0.8)"/>
+                        <rect x="95" y="88" width="80" height="4" fill="rgba(255,255,255,0.6)"/>
+                        <rect x="95" y="96" width="90" height="4" fill="rgba(255,255,255,0.6)"/>
+                        <rect x="95" y="104" width="70" height="4" fill="rgba(255,255,255,0.6)"/>
+                        <rect x="140" y="150" width="40" height="8" rx="4" fill="#34495e"/>
+                        
+                        <!-- Mobile Phone -->
+                        <rect x="260" y="80" width="50" height="90" rx="8" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                        <rect x="265" y="88" width="40" height="70" rx="2" fill="#3498db"/>
+                        <rect x="270" y="93" width="30" height="6" fill="rgba(255,255,255,0.8)"/>
+                        <rect x="270" y="103" width="20" height="3" fill="rgba(255,255,255,0.6)"/>
+                        <rect x="270" y="109" width="25" height="3" fill="rgba(255,255,255,0.6)"/>
+                        <rect x="270" y="115" width="18" height="3" fill="rgba(255,255,255,0.6)"/>
+                        <circle cx="285" cy="178" r="4" fill="#34495e"/>
+                        
+                        <!-- Connection lines -->
+                        <path d="M220 105 Q240 95 260 105" stroke="rgba(255,255,255,0.5)" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+                        
+                        <text x="200" y="210" font-family="Arial" font-size="14" fill="white" font-weight="bold" text-anchor="middle">Responsive Preview</text>
+                    </svg>
+                </div>
+                <div class="gallery-item gallery-item-2">
+                    <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="225" fill="url(#grad2)"/>
+                        <defs>
+                            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Person silhouette -->
+                        <circle cx="120" cy="70" r="15" fill="rgba(255,255,255,0.3)"/>
+                        <rect x="105" y="85" width="30" height="40" rx="15" fill="rgba(255,255,255,0.3)"/>
+                        <rect x="100" y="110" width="15" height="30" fill="rgba(255,255,255,0.25)"/>
+                        <rect x="125" y="110" width="15" height="30" fill="rgba(255,255,255,0.25)"/>
+                        
+                        <!-- Laptop -->
+                        <rect x="180" y="100" width="160" height="100" rx="8" fill="#2c3e50"/>
+                        <rect x="185" y="105" width="150" height="85" rx="4" fill="#1a1a1a"/>
+                        <!-- Code on screen -->
+                        <rect x="190" y="110" width="140" height="6" fill="#e74c3c"/>
+                        <rect x="190" y="120" width="100" fill="#f39c12" height="4"/>
+                        <rect x="200" y="128" width="80" fill="#2ecc71" height="4"/>
+                        <rect x="190" y="136" width="120" fill="#3498db" height="4"/>
+                        <rect x="200" y="144" width="90" fill="#9b59b6" height="4"/>
+                        <rect x="190" y="152" width="110" fill="#e67e22" height="4"/>
+                        <rect x="200" y="160" width="70" fill="#1abc9c" height="4"/>
+                        <rect x="190" y="168" width="100" fill="#34495e" height="4"/>
+                        
+                        <!-- Hands typing -->
+                        <ellipse cx="160" cy="140" rx="12" ry="8" fill="rgba(255,255,255,0.25)"/>
+                        <ellipse cx="180" cy="145" rx="12" ry="8" fill="rgba(255,255,255,0.25)"/>
+                        
+                        <text x="200" y="210" font-family="Arial" font-size="14" fill="white" font-weight="bold" text-anchor="middle">Coding Session</text>
+                    </svg>
+                </div>
+                <div class="gallery-item gallery-item-3">
+                    <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="225" fill="url(#grad3)"/>
+                        <defs>
+                            <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Tablet -->
+                        <rect x="120" y="50" width="160" height="120" rx="12" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                        <rect x="130" y="60" width="140" height="100" rx="6" fill="#ecf0f1"/>
+                        
+                        <!-- UI Design elements -->
+                        <rect x="140" y="70" width="120" height="12" rx="6" fill="#3498db"/>
+                        <rect x="140" y="90" width="50" height="30" rx="4" fill="#e74c3c"/>
+                        <rect x="200" y="90" width="50" height="30" rx="4" fill="#2ecc71"/>
+                        <rect x="140" y="130" width="80" height="8" rx="4" fill="#95a5a6"/>
+                        <rect x="140" y="145" width="60" height="8" rx="4" fill="#95a5a6"/>
+                        
+                        <!-- Design tools -->
+                        <circle cx="80" cy="100" r="8" fill="rgba(255,255,255,0.3)"/>
+                        <rect x="75" y="115" width="10" height="20" fill="rgba(255,255,255,0.25)"/>
+                        <circle cx="320" cy="120" r="6" fill="rgba(255,255,255,0.3)"/>
+                        <rect x="315" y="130" width="10" height="15" fill="rgba(255,255,255,0.25)"/>
+                        
+                        <!-- Hand with stylus -->
+                        <ellipse cx="300" cy="80" rx="15" ry="10" fill="rgba(255,255,255,0.25)"/>
+                        <rect x="310" y="75" width="20" height="3" rx="1" fill="rgba(255,255,255,0.4)"/>
+                        
+                        <text x="200" y="210" font-family="Arial" font-size="14" fill="white" font-weight="bold" text-anchor="middle">UI/UX Design</text>
+                    </svg>
+                </div>
+                <div class="gallery-item gallery-item-4">
+                    <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="225" fill="url(#grad4)"/>
+                        <defs>
+                            <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#43e97b;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#38f9d7;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Team members -->
+                        <circle cx="80" cy="80" r="12" fill="rgba(255,255,255,0.3)"/>
+                        <rect x="68" y="92" width="24" height="30" rx="12" fill="rgba(255,255,255,0.3)"/>
+                        
+                        <circle cx="150" cy="75" r="12" fill="rgba(255,255,255,0.25)"/>
+                        <rect x="138" y="87" width="24" height="30" rx="12" fill="rgba(255,255,255,0.25)"/>
+                        
+                        <circle cx="320" cy="85" r="12" fill="rgba(255,255,255,0.3)"/>
+                        <rect x="308" y="97" width="24" height="30" rx="12" fill="rgba(255,255,255,0.3)"/>
+                        
+                        <!-- Table/workspace -->
+                        <ellipse cx="200" cy="140" rx="120" ry="20" fill="rgba(255,255,255,0.2)"/>
+                        
+                        <!-- Laptop on table -->
+                        <rect x="170" y="125" width="60" height="40" rx="4" fill="#2c3e50"/>
+                        <rect x="175" y="130" width="50" height="30" fill="#3498db"/>
+                        
+                        <!-- Papers/sketches -->
+                        <rect x="120" y="135" width="40" height="30" rx="2" fill="rgba(255,255,255,0.4)" transform="rotate(-15 140 150)"/>
+                        <rect x="250" y="130" width="35" height="25" rx="2" fill="rgba(255,255,255,0.35)" transform="rotate(10 267 142)"/>
+                        
+                        <!-- Discussion bubbles -->
+                        <circle cx="100" cy="60" r="8" fill="rgba(255,255,255,0.2)"/>
+                        <circle cx="180" cy="55" r="6" fill="rgba(255,255,255,0.15)"/>
+                        <circle cx="300" cy="65" r="7" fill="rgba(255,255,255,0.2)"/>
+                        
+                        <text x="200" y="210" font-family="Arial" font-size="14" fill="white" font-weight="bold" text-anchor="middle">Team Collaboration</text>
+                    </svg>
+                </div>
+                <div class="gallery-item gallery-item-5">
+                    <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="225" fill="url(#grad5)"/>
+                        <defs>
+                            <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Abstract gradient shapes matching site theme -->
+                        <circle cx="100" cy="80" r="40" fill="rgba(255,255,255,0.15)" opacity="0.8"/>
+                        <circle cx="300" cy="120" r="35" fill="rgba(255,255,255,0.1)" opacity="0.9"/>
+                        <ellipse cx="200" cy="60" rx="60" ry="25" fill="rgba(255,255,255,0.12)" opacity="0.7"/>
+                        <ellipse cx="150" cy="140" rx="45" ry="30" fill="rgba(255,255,255,0.08)" opacity="0.8"/>
+                        <ellipse cx="320" cy="70" rx="30" ry="50" fill="rgba(255,255,255,0.1)" opacity="0.6"/>
+                        
+                        <!-- Flowing lines -->
+                        <path d="M50 100 Q200 60 350 120" stroke="rgba(255,255,255,0.2)" stroke-width="3" fill="none" opacity="0.7"/>
+                        <path d="M80 140 Q200 100 320 160" stroke="rgba(255,255,255,0.15)" stroke-width="2" fill="none" opacity="0.8"/>
+                        
+                        <!-- Geometric accents -->
+                        <polygon points="250,90 270,110 250,130 230,110" fill="rgba(255,255,255,0.1)" opacity="0.6"/>
+                        <rect x="120" y="100" width="20" height="20" rx="10" fill="rgba(255,255,255,0.12)" opacity="0.7"/>
+                        
+                        <text x="200" y="210" font-family="Arial" font-size="14" fill="white" font-weight="bold" text-anchor="middle">Abstract Gradient</text>
+                    </svg>
+                </div>
+                <div class="gallery-item gallery-item-6">
+                    <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="225" fill="url(#grad6)"/>
+                        <defs>
+                            <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#a8edea;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#fed6e3;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Desktop -->
+                        <rect x="50" y="80" width="100" height="70" rx="6" fill="#2c3e50"/>
+                        <rect x="55" y="85" width="90" height="55" fill="#3498db"/>
+                        <rect x="60" y="90" width="80" height="6" fill="rgba(255,255,255,0.8)"/>
+                        <rect x="60" y="100" width="60" height="4" fill="rgba(255,255,255,0.6)"/>
+                        <rect x="60" y="108" width="70" height="4" fill="rgba(255,255,255,0.6)"/>
+                        <rect x="90" y="150" width="20" height="15" fill="#34495e"/>
+                        <rect x="70" y="165" width="60" height="8" rx="4" fill="#34495e"/>
+                        
+                        <!-- Tablet -->
+                        <rect x="170" y="70" width="80" height="100" rx="8" fill="#2c3e50"/>
+                        <rect x="175" y="78" width="70" height="84" fill="#3498db"/>
+                        <rect x="180" y="83" width="60" height="6" fill="rgba(255,255,255,0.8)"/>
+                        <rect x="180" y="93" width="45" height="4" fill="rgba(255,255,255,0.6)"/>
+                        <rect x="180" y="101" width="50" height="4" fill="rgba(255,255,255,0.6)"/>
+                        <circle cx="210" cy="180" r="4" fill="#34495e"/>
+                        
+                        <!-- Mobile -->
+                        <rect x="280" y="90" width="50" height="80" rx="8" fill="#2c3e50"/>
+                        <rect x="285" y="98" width="40" height="60" fill="#3498db"/>
+                        <rect x="290" y="103" width="30" height="5" fill="rgba(255,255,255,0.8)"/>
+                        <rect x="290" y="112" width="22" height="3" fill="rgba(255,255,255,0.6)"/>
+                        <rect x="290" y="118" width="25" height="3" fill="rgba(255,255,255,0.6)"/>
+                        <circle cx="305" cy="178" r="3" fill="#34495e"/>
+                        
+                        <!-- Connection lines -->
+                        <path d="M150 115 L170 115" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+                        <path d="M250 115 L280 115" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+                        
+                        <text x="200" y="210" font-family="Arial" font-size="14" fill="white" font-weight="bold" text-anchor="middle">Multi-Device Mockup</text>
+                    </svg>
+                </div>
+                <div class="gallery-item gallery-item-7">
+                    <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="225" fill="url(#grad7)"/>
+                        <defs>
+                            <linearGradient id="grad7" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ff9a9e;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#fecfef;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Desk surface -->
+                        <ellipse cx="200" cy="160" rx="180" ry="30" fill="rgba(255,255,255,0.1)"/>
+                        
+                        <!-- Monitor -->
+                        <rect x="120" y="60" width="160" height="100" rx="8" fill="#2c3e50"/>
+                        <rect x="125" y="65" width="150" height="85" rx="4" fill="#1a1a1a"/>
+                        <!-- Code editor interface -->
+                        <rect x="130" y="70" width="140" height="12" fill="#34495e"/>
+                        <circle cx="138" cy="76" r="3" fill="#e74c3c"/>
+                        <circle cx="148" cy="76" r="3" fill="#f39c12"/>
+                        <circle cx="158" cy="76" r="3" fill="#2ecc71"/>
+                        <!-- Code lines -->
+                        <rect x="135" y="88" width="130" height="4" fill="#e74c3c"/>
+                        <rect x="145" y="96" width="90" height="3" fill="#f39c12"/>
+                        <rect x="135" y="103" width="110" height="3" fill="#2ecc71"/>
+                        <rect x="145" y="110" width="80" height="3" fill="#3498db"/>
+                        <rect x="135" y="117" width="100" height="3" fill="#9b59b6"/>
+                        <rect x="145" y="124" width="70" height="3" fill="#1abc9c"/>
+                        <rect x="135" y="131" width="120" height="3" fill="#e67e22"/>
+                        
+                        <!-- Monitor stand -->
+                        <rect x="190" y="160" width="20" height="20" fill="#34495e"/>
+                        <rect x="170" y="180" width="60" height="8" rx="4" fill="#34495e"/>
+                        
+                        <!-- Keyboard -->
+                        <rect x="140" y="190" width="120" height="25" rx="4" fill="#ecf0f1"/>
+                        <rect x="145" y="195" width="110" height="15" rx="2" fill="#bdc3c7"/>
+                        
+                        <!-- Coffee cup -->
+                        <circle cx="320" cy="140" r="12" fill="rgba(255,255,255,0.3)"/>
+                        <rect x="315" y="140" width="10" height="8" fill="rgba(255,255,255,0.25)"/>
+                        
+                        <!-- Plant -->
+                        <rect x="70" y="130" width="8" height="20" fill="rgba(255,255,255,0.2)"/>
+                        <circle cx="74" cy="125" r="8" fill="rgba(255,255,255,0.25)"/>
+                        
+                        <text x="200" y="210" font-family="Arial" font-size="14" fill="white" font-weight="bold" text-anchor="middle">Developer Workspace</text>
+                    </svg>
+                </div>
+                <div class="gallery-item gallery-item-8">
+                    <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="225" fill="url(#grad8)"/>
+                        <defs>
+                            <linearGradient id="grad8" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffecd2;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#fcb69f;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Minimal flat design devices -->
+                        <!-- Desktop (simplified) -->
+                        <rect x="80" y="80" width="80" height="50" rx="4" fill="rgba(255,255,255,0.3)"/>
+                        <rect x="85" y="85" width="70" height="35" fill="rgba(255,255,255,0.2)"/>
+                        <rect x="110" y="130" width="20" height="10" fill="rgba(255,255,255,0.25)"/>
+                        <rect x="100" y="140" width="40" height="4" rx="2" fill="rgba(255,255,255,0.25)"/>
+                        
+                        <!-- Tablet (simplified) -->
+                        <rect x="180" y="70" width="50" height="70" rx="6" fill="rgba(255,255,255,0.3)"/>
+                        <rect x="185" y="78" width="40" height="54" fill="rgba(255,255,255,0.2)"/>
+                        <circle cx="205" cy="145" r="3" fill="rgba(255,255,255,0.25)"/>
+                        
+                        <!-- Mobile (simplified) -->
+                        <rect x="260" y="85" width="35" height="60" rx="6" fill="rgba(255,255,255,0.3)"/>
+                        <rect x="265" y="92" width="25" height="40" fill="rgba(255,255,255,0.2)"/>
+                        <circle cx="277" cy="140" r="2" fill="rgba(255,255,255,0.25)"/>
+                        
+                        <!-- Connecting elements -->
+                        <circle cx="200" cy="50" r="8" fill="rgba(255,255,255,0.2)"/>
+                        <path d="M160 105 Q200 50 240 115" stroke="rgba(255,255,255,0.25)" stroke-width="2" fill="none"/>
+                        
+                        <!-- Decorative elements -->
+                        <circle cx="320" cy="60" r="6" fill="rgba(255,255,255,0.2)"/>
+                        <circle cx="60" cy="120" r="8" fill="rgba(255,255,255,0.15)"/>
+                        <rect x="340" y="140" width="12" height="12" rx="6" fill="rgba(255,255,255,0.2)"/>
+                        
+                        <text x="200" y="210" font-family="Arial" font-size="14" fill="white" font-weight="bold" text-anchor="middle">Responsive Devices</text>
+                    </svg>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#home">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="#gallery">Gallery</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="#">Documentation</a>
+                    <a href="#">Tutorials</a>
+                    <a href="#">Support</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="#">Twitter</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="#">GitHub</a>
+                </div>
+            </div>
+            <p>&copy; 2024 ResponsiveWeb. Perfectly responsive across all devices.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu after clicking
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'994266567460802e',t:'MTc2MTQwMjQ5OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
